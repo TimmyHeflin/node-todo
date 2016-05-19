@@ -17,6 +17,8 @@
 		body 					{ padding-top:50px; }
 		#todo-list 				{ margin-bottom:30px; }
 		#todo-form 	 			{ margin-bottom:50px; }
+		.completed                              { text-decoration:line-through; }
+		.snooze                                 { background-color:#f0f0f0; color:#666; }
 	</style>
 
 	<!-- SPELLS -->
@@ -35,16 +37,22 @@
 		<div class="jumbotron text-center">
 			<h1>I'm a Todo-app <span class="label label-info">{{ todos.length }}</span></h1>
 		</div>
-
+		
 		<!-- TODO LIST -->
 		<div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
 				<div class="checkbox"  ng-repeat="todo in todos">
-                                  <label>
-                                  <input type="checkbox"> {{ todo.text }}
+				 <font ng-click="snooze()">>>{{ snoozeMarked }}</font>
+				  <label>
+				  
+                                    <input type="checkbox" ng-click="completed()">
+				     <font>{{ completedTask }}{{ todo.text }}</font> 		       
+				       
                                   </label>
-                                 </div>
+                                </div>
+
+				<p class="text-center"></p>
                              
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>

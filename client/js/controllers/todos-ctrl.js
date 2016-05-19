@@ -3,7 +3,19 @@ angular.module('todoController', [])
 	// inject the Todo service factory into our controller
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
 		$scope.formData = {};
-		$scope.loading = true;
+	    $scope.loading = true;
+	    
+	    $scope.completedTask = false;
+	    $scope.completed = function(){
+		$scope.completedTask = !$scope.completedTask;
+	    };
+
+	    $scope.snoozeMarked = false;
+	    $scope.snooze = function(){
+		$scope.snoozeMarked = !$scope.snoozeMarked;
+	    };
+
+	    
 
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
@@ -11,7 +23,7 @@ angular.module('todoController', [])
 		Todos.get()
 			.success(function(data) {
 				$scope.todos = data;
-				$scope.loading = false;
+			        $scope.loading = false;
 			});
 
 		// CREATE ==================================================================
